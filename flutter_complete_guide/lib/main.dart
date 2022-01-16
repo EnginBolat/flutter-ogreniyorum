@@ -19,17 +19,21 @@ class _MyAppState extends State<MyApp> {
       _questionIndex = _questionIndex + 1;
     });
 
-    if (_questionIndex > 2) {
+    if (_questionIndex < questions.length) {
       _questionIndex = 0;
     }
     print(_questionIndex);
   }
 
-  var questions = [
+  final questions = const [
     {"questionText" : "What's your favorite Color?","answers":["Black","Red","Green","White"]},
     {"questionText" : "What's your favorite Animal?","answers":["Bear","Lion","Money","Elephant"]},
     {"questionText" : "What's your favorite Instructor?","answers":["Max1","Max2","Max3","Max4"]},
   ];
+
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +50,6 @@ class _MyAppState extends State<MyApp> {
             Question(
               questions[_questionIndex]['questionText'] as String
               ),
-
               ...(questions[_questionIndex]['answers'] as List<String>).map((answer) {
                 return Answer(_answerQuestion, answer);
               }).toList(),
