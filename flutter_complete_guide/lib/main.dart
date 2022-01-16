@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_complete_guide/quiz.dart';
 
-import './question.dart';
-import './answer.dart';
+import 'result.dart';
 
 void main() => runApp(MyApp());
 
@@ -11,29 +11,60 @@ class MyApp extends StatefulWidget {
     return _MyAppState();
   }
 }
-class _MyAppState extends State<MyApp> {
-  var _questionIndex = 0;
 
-  void _answerQuestion() {
+class _MyAppState extends State<MyApp> {
+
+  var _questionIndex = 0;
+  int _totalScore = 0;
+
+void ResetScore(){
+  setState(() {
+    _questionIndex = 0;
+    _totalScore = 0;
+  });
+}
+
+
+
+  void _answerQuestion(int score) {
+    _totalScore+=score;
     setState(() {
       _questionIndex = _questionIndex + 1;
     });
-
-    if (_questionIndex < questions.length) {
-      _questionIndex = 0;
-    }
     print(_questionIndex);
   }
 
-  final questions = const [
-    {"questionText" : "What's your favorite Color?","answers":["Black","Red","Green","White"]},
-    {"questionText" : "What's your favorite Animal?","answers":["Bear","Lion","Money","Elephant"]},
-    {"questionText" : "What's your favorite Instructor?","answers":["Max1","Max2","Max3","Max4"]},
+  final _questions = const [
+    {
+      "questionText": "What's your favorite Color?",
+      "answers": [
+        {"text": "Black", "score": 10},
+        {"text": "Red", "score": 5},
+        {"text": "Green", "score": 3},
+        {"text": "White", "score": 1}
+      ]
+    },
+    
+    {
+      "questionText": "What's your favorite Animal?",
+      "answers": [
+        {"text": "Bear", "score": 1},
+        {"text": "Lion", "score": 1},
+        {"text": "Monkey", "score": 1},
+        {"text": "Elephant", "score": 1},
+      ]
+    },
+
+    {
+      "questionText": "What's your favorite Instructor?",
+      "answers": [
+        {"text": "Max", "score": 1},
+        {"text": "Max", "score": 1},
+        {"text": "Max", "score": 1},
+        {"text": "Max", "score": 1},
+      ]
+    },
   ];
-
-
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -41,20 +72,15 @@ class _MyAppState extends State<MyApp> {
       home: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.orange,
-          title: const Text(
-            "This Is My First App",
-          ),
+          title: const Text("This Is My First App"),
         ),
-        body: Column(
-          children: <Widget>[
-            Question(
-              questions[_questionIndex]['questionText'] as String
-              ),
-              ...(questions[_questionIndex]['answers'] as List<String>).map((answer) {
-                return Answer(_answerQuestion, answer);
-              }).toList(),
-          ],
-        ),
+        body: _questionIndex < _questions.length
+            ? Quiz(
+                questions: _questions,
+                questionIndex: _questionIndex,
+                answerQuestion: _answerQuestion,
+              )
+            : Result(_totalScore,ResetScore),
       ),
     );
   }
