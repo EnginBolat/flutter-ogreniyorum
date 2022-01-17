@@ -1,24 +1,29 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 
 class Result extends StatelessWidget {
   final int resultScore;
-  final VoidCallback resetHandler;
+  final Function resetHandler;
 
   Result(this.resetHandler, this.resultScore);
 
   String get resultPhrase {
     String resultText;
     if (resultScore == 4) {
-      resultText = "You are awsome!";
+      resultText = "You are awsome! Point : $resultScore ";
     } 
     if (resultScore == 3) {
-      resultText = "Pretty likeable!";
+      resultText = "Pretty likeable! Point : $resultScore";
     } 
     if (resultScore == 2) {
-      resultText = "Half by Half";
+      resultText = "Half by Half! Point : $resultScore";
+    }
+    if (resultScore == 1) {
+      resultText = "We Know this is not your best performance! Point : $resultScore";
     }
     else{
-      resultText = "We Know this is not your best performance";
+      resultText="Thanks for Playing";
     }
     return resultText;
   }
@@ -30,7 +35,7 @@ class Result extends StatelessWidget {
         children: [
           Text(resultPhrase,style: TextStyle(fontSize: 36, fontWeight: FontWeight.bold),textAlign: TextAlign.center,
           ),
-          FlatButton(child: Text("Play Again?"), onPressed: resetHandler)
+          RaisedButton(child: Text("Play Again?"), onPressed: resetHandler())
         ],
       ),
     );
