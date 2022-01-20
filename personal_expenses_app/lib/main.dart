@@ -12,6 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: "Flutter App",
       home: MyHomePage(),
     );
@@ -45,14 +46,14 @@ class MyHomePage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-          Container(
+          Container( //Chart
             width: double.infinity,
             child: Card(
               color: Colors.orange,
               child: Text("CHART!"),
             ),
           ),
-          Column(
+          Column( //Cards
             children: transactions.map((tx) {
               return Container(
                 width: double.infinity,
