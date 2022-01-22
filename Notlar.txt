@@ -1,0 +1,10 @@
+		
+		//AppBar Yüksekliğini ayarlamak için;
+		toolbarHeight: 120.0,
+		
+		//AppBar'ın köşelerini daire yapmak için;
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+            bottom: Radius.circular(30),
+          ),
+        ),

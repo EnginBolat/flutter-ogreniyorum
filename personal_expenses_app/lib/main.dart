@@ -42,6 +42,12 @@ class MyHomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text("Flutter App"),
         backgroundColor: Colors.deepOrange,
+        toolbarHeight: 120.0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+            bottom: Radius.circular(30),
+          ),
+        ),
       ),
       body: Column(
         //mainAxisAlignment: MainAxisAlignment.start,
@@ -66,7 +72,9 @@ class MyHomePage extends StatelessWidget {
                     decoration: InputDecoration(labelText: "Title"),
                   ),
                   TextField(
-                    decoration: InputDecoration(labelText: "Amount"),
+                    decoration: InputDecoration(
+                      labelText: "Amount",
+                    ),
                   ),
                   FlatButton(
                     child: Text("Add Transaction"),
