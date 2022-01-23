@@ -8,3 +8,5 @@
             bottom: Radius.circular(30),
           ),
         ),
+		
+		//SingleChildScrollView sayfaya kaydırma özelliği ekler.
