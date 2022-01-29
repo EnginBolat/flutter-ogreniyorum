@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
-import './widgets/user_transactions.dart';
+import './widgets/new_transactions.dart';
+import './widgets/transaction_list.dart';
+import './models/transaction.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,7 +21,47 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatelessWidget {
+class MyHomePage extends StatefulWidget {
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  final List<Transaction> _userTransactions = [
+    Transaction(
+      id: "t1",
+      title: "New Shoes",
+      amount: 69.99,
+      date: DateTime.now(),
+    ),
+    Transaction(
+      id: "t2",
+      title: "Grociers",
+      amount: 16.53,
+      date: DateTime.now(),
+    ),
+  ];
+
+  void _addNewTransactions(String txTitle, double txtAmount) {
+    final newTx = Transaction(
+      title: txTitle,
+      amount: txtAmount,
+      date: DateTime.now(),
+      id: DateTime.now.toString(),
+    );
+    setState(() {
+      _userTransactions.add(newTx);
+    });
+  }
+
+  void _startAddNewTransaction(BuildContext ctx) {
+    showModalBottomSheet(
+        context: ctx,
+        builder: (bCtx) {
+          return NewTransacions(_addNewTransactions);
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,15 +81,17 @@ class MyHomePage extends StatelessWidget {
                 child: Text("CHART!"),
               ),
             ),
-            UserTransactions(),
+            TransactionList(_userTransactions),
           ],
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add,),
+        child: const Icon(
+          Icons.add,
+        ),
         backgroundColor: Colors.orange,
-        onPressed: () {},
+        onPressed: () => _startAddNewTransaction(context),
       ),
     );
   }

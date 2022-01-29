@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
 
-class NewTransacions extends StatelessWidget {
+class NewTransacions extends StatefulWidget {
   final Function addTx;
-  final titleController = TextEditingController();
-  final amountController = TextEditingController();
 
   NewTransacions(this.addTx);
+
+  @override
+  State<NewTransacions> createState() => _NewTransacionsState();
+}
+
+class _NewTransacionsState extends State<NewTransacions> {
+  final titleController = TextEditingController();
+
+  final amountController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +24,7 @@ class NewTransacions extends StatelessWidget {
         return;
       }
 
-      addTx(
+      widget.addTx(
         titleController.text,
         double.parse(amountController.text),
       );
