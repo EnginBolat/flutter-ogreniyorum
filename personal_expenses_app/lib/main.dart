@@ -15,7 +15,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: "Flutter App",
+      title: "Personal Expenses",
+      theme: ThemeData(primarySwatch: Colors.orange,accentColor: Colors.amber ),
       home: MyHomePage(),
     );
   }
@@ -66,8 +67,8 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Flutter App"),
-        backgroundColor: Colors.orange,
+        title: const Text("Personal Expenses"),
+        foregroundColor: Colors.white,
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -90,7 +91,7 @@ class _MyHomePageState extends State<MyHomePage> {
         child: const Icon(
           Icons.add,
         ),
-        backgroundColor: Colors.orange,
+        foregroundColor: Colors.white,
         onPressed: () => _startAddNewTransaction(context),
       ),
     );

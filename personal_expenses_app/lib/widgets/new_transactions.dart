@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 class NewTransacions extends StatefulWidget {
   final Function addTx;
-
   NewTransacions(this.addTx);
 
   @override
@@ -11,9 +10,7 @@ class NewTransacions extends StatefulWidget {
 
 class _NewTransacionsState extends State<NewTransacions> {
   final titleController = TextEditingController();
-
   final amountController = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     void submitData() {
@@ -28,6 +25,8 @@ class _NewTransacionsState extends State<NewTransacions> {
         titleController.text,
         double.parse(amountController.text),
       );
+
+      Navigator.of(context).pop();
     }
 
     return Card(
