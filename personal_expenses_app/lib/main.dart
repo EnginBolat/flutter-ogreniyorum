@@ -25,6 +25,7 @@ class MyApp extends StatelessWidget {
                   fontFamily: "QuickSand",
                   fontWeight: FontWeight.bold,
                   fontSize: 18),
+                  button: const TextStyle(color: Colors.white),
             ),
         appBarTheme: AppBarTheme(
           titleTextStyle: ThemeData.light()
@@ -53,17 +54,17 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   final List<Transaction> _userTransactions = [
     // Transaction(
-    //   id: "t1",
-    //   title: "New Shoes",
-    //   amount: 69.99,
-    //   date: DateTime.now(),
-    // ),
-    // Transaction(
-    //   id: "t2",
-    //   title: "Grociers",
-    //   amount: 16.53,
-    //   date: DateTime.now(),
-    // ),
+    //    id: "t1",
+    //    title: "New Shoes",
+    //    amount: 69.99,
+    //    date: DateTime.now(),
+    //  ),
+    //  Transaction(
+    //    id: "t2",
+    //    title: "Grociers",
+    //    amount: 16.53,
+    //    date: DateTime.now(),
+    //  ),
   ];
 
   List<Transaction> get _recentTransactions{
@@ -74,11 +75,11 @@ class _MyHomePageState extends State<MyHomePage> {
     }).toList();
   }
 
-  void _addNewTransactions(String txTitle, double txtAmount) {
+  void _addNewTransactions(String txTitle, double txtAmount, DateTime chosenDate) {
     final newTx = Transaction(
       title: txTitle,
       amount: txtAmount,
-      date: DateTime.now(),
+      date: chosenDate,
       id: DateTime.now.toString(),
     );
     setState(() {
@@ -94,6 +95,14 @@ class _MyHomePageState extends State<MyHomePage> {
         });
   }
 
+  void _deleteTransaction(String id){
+    setState(() {
+      _userTransactions.removeWhere((tx) => tx.id==id);
+    });
+  }
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -106,7 +115,7 @@ class _MyHomePageState extends State<MyHomePage> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             Chart(_recentTransactions),
-            TransactionList(_userTransactions),
+            TransactionList(_userTransactions, _deleteTransaction),
           ],
         ),
       ),
