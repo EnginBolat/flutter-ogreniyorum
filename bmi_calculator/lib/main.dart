@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 
 void main() {
@@ -36,16 +34,21 @@ class _HomePageBodyState extends State<HomePageBody> {
   final boyController = TextEditingController();
   final kiloController = TextEditingController();
   double bmi = 0;
+  var bmiHesaplanmis;
 
   void _bmiHesapla() {
     double boy = double.parse(boyController.text);
     final kilo = int.parse(kiloController.text);
     print(boy);
     print(kilo);
-    if(boy>0 && kilo > 0){
-      bmi = (kilo/(boy*boy));
-      print(bmi);
-    }
+    setState(() {
+      if (boy > 0 && kilo > 0) {
+        bmi = (kilo / (boy * boy));
+        print(bmi);
+        bmiHesaplanmis = bmi;
+        print(bmiHesaplanmis);
+      }
+    });
   }
 
   @override
@@ -58,8 +61,21 @@ class _HomePageBodyState extends State<HomePageBody> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
+            Container(
+              height: 200,
+              child: Image.asset(
+                'assets/images/tartı.png',
+                fit: BoxFit.cover,
+                color: Colors.black,
+              ),
+            ),
+            const SizedBox(
+              height: 30,
+            ),
             TextField(
               controller: kiloController,
+              keyboardType:
+                  const TextInputType.numberWithOptions(decimal: true),
               decoration: const InputDecoration(
                 hintText: "Kilo",
                 fillColor: Colors.white,
@@ -71,8 +87,10 @@ class _HomePageBodyState extends State<HomePageBody> {
             ),
             TextField(
               controller: boyController,
+              keyboardType:
+                  const TextInputType.numberWithOptions(decimal: true),
               decoration: const InputDecoration(
-                  hintText: "Boy",
+                  hintText: "Boy (ör : 1.75)",
                   fillColor: Colors.white,
                   filled: true,
                   focusedBorder: OutlineInputBorder(
@@ -95,6 +113,48 @@ class _HomePageBodyState extends State<HomePageBody> {
                 ),
               ),
             ),
+            const SizedBox(height: 15),
+            SingleChildScrollView(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  bmiHesaplanmis == null
+                      ? Text(
+                          "",
+                        )
+                      : Text(
+                          "YAĞ ORANINIZ",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'OpenSans',
+                              fontSize: 24),
+                        ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 15),
+            SingleChildScrollView(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  bmiHesaplanmis == null
+                      ? Text(
+                          "",
+                        )
+                      : Text(
+                          bmiHesaplanmis.toString(),
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'OpenSans',
+                              fontSize: 24),
+                        ),
+                ],
+              ),
+            )
           ],
         ),
       ),
