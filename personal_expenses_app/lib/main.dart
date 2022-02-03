@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import './widgets/new_transactions.dart';
 import './widgets/transaction_list.dart';
@@ -6,12 +7,16 @@ import './models/transaction.dart';
 import './widgets/chart.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -21,11 +26,11 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.orange,
         fontFamily: "QuickSand",
         textTheme: ThemeData.light().textTheme.copyWith(
-              headline6: TextStyle(
+              headline6: const TextStyle(
                   fontFamily: "QuickSand",
                   fontWeight: FontWeight.bold,
                   fontSize: 18),
-                  button: const TextStyle(color: Colors.white),
+              button: const TextStyle(color: Colors.white),
             ),
         appBarTheme: AppBarTheme(
           titleTextStyle: ThemeData.light()
@@ -53,29 +58,52 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final List<Transaction> _userTransactions = [
-    // Transaction(
-    //    id: "t1",
-    //    title: "New Shoes",
-    //    amount: 69.99,
-    //    date: DateTime.now(),
-    //  ),
-    //  Transaction(
-    //    id: "t2",
-    //    title: "Grociers",
-    //    amount: 16.53,
-    //    date: DateTime.now(),
-    //  ),
+    Transaction(
+      id: "t1",
+      title: "New Shoes",
+      amount: 69.99,
+      date: DateTime.now(),
+    ),
+    Transaction(
+      id: "t2",
+      title: "Cake",
+      amount: 16.53,
+      date: DateTime.now(),
+    ),
+    Transaction(
+      id: "t3",
+      title: "Grociers",
+      amount: 16.53,
+      date: DateTime.now(),
+    ),
+    Transaction(
+      id: "t4",
+      title: "Pasta",
+      amount: 16.53,
+      date: DateTime.now(),
+    ),
+    Transaction(
+      id: "t5",
+      title: "Drink",
+      amount: 16.53,
+      date: DateTime.now(),
+    ),
+    Transaction(
+      id: "t6",
+      title: "Alcohol",
+      amount: 16.53,
+      date: DateTime.now(),
+    ),
   ];
 
-  List<Transaction> get _recentTransactions{
-    return _userTransactions.where((tx){
-      return tx.date.isAfter(
-         DateTime.now().subtract(const Duration(days:7))
-      );
+  List<Transaction> get _recentTransactions {
+    return _userTransactions.where((tx) {
+      return tx.date.isAfter(DateTime.now().subtract(const Duration(days: 7)));
     }).toList();
   }
 
-  void _addNewTransactions(String txTitle, double txtAmount, DateTime chosenDate) {
+  void _addNewTransactions(
+      String txTitle, double txtAmount, DateTime chosenDate) {
     final newTx = Transaction(
       title: txTitle,
       amount: txtAmount,
@@ -95,27 +123,39 @@ class _MyHomePageState extends State<MyHomePage> {
         });
   }
 
-  void _deleteTransaction(String id){
+  void _deleteTransaction(String id) {
     setState(() {
-      _userTransactions.removeWhere((tx) => tx.id==id);
+      _userTransactions.removeWhere((tx) => tx.id == id);
     });
   }
 
-
+  final appBar = AppBar(
+    title: Text("Personal Expenses"),
+  );
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Personal Expenses"),
-      ),
+      appBar: appBar,
       body: SingleChildScrollView(
         child: Column(
           //mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Chart(_recentTransactions),
-            TransactionList(_userTransactions, _deleteTransaction),
+            Container(
+              height: (MediaQuery.of(context).size.height -
+                      appBar.preferredSize.height -
+                      MediaQuery.of(context).padding.top) *
+                  0.28,
+              child: Chart(_recentTransactions),
+            ),
+            Container(
+              height: (MediaQuery.of(context).size.height -
+                      appBar.preferredSize.height -
+                      MediaQuery.of(context).padding.top) *
+                  0.6,
+              child: TransactionList(_userTransactions, _deleteTransaction),
+            ),
           ],
         ),
       ),
