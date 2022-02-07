@@ -19,7 +19,7 @@ class _NewTransacionsState extends State<NewTransacions> {
       final enteredTitle = _titleController.text;
       final enteredAmount = double.parse(_amountController.text);
 
-      if (enteredTitle.isEmpty || enteredAmount <= 0  || _selectedDate == null) {
+      if (enteredTitle.isEmpty || enteredAmount <= 0 || _selectedDate == null) {
         return;
       }
 
@@ -48,55 +48,62 @@ class _NewTransacionsState extends State<NewTransacions> {
       });
     }
 
-    return Card(
-      elevation: 5,
-      child: Container(
-        padding: const EdgeInsets.all(10),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: <Widget>[
-            TextField(
-              decoration: const InputDecoration(
-                labelText: "Title",
+    return SingleChildScrollView(
+      child: Card(
+        elevation: 5,
+        child: Container(
+          padding: EdgeInsets.only(
+              top: 10,
+              left: 10,
+              right: 10,
+              bottom: MediaQuery.of(context).viewInsets.bottom + 10),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: <Widget>[
+              TextField(
+                decoration: const InputDecoration(
+                  labelText: "Title",
+                ),
+                controller: _titleController,
+                onSubmitted: (_) => _submitData(),
               ),
-              controller: _titleController,
-              onSubmitted: (_) => _submitData(),
-            ),
-            TextField(
-              decoration: const InputDecoration(
-                labelText: "Amount",
+              TextField(
+                decoration: const InputDecoration(
+                  labelText: "Amount",
+                ),
+                controller: _amountController,
+                keyboardType:
+                    const TextInputType.numberWithOptions(decimal: true),
+                onSubmitted: (_) => _submitData(),
               ),
-              controller: _amountController,
-              keyboardType: const TextInputType.numberWithOptions(decimal: true),
-              onSubmitted: (_) => _submitData(),
-            ),
-            SizedBox(
-              height: 70,
-              child: Row(
-                children: <Widget>[
-                  Expanded(
-                    child: Text(
-                      _selectedDate == null
-                          ? 'No Date Chosen!'
-                          : 'Picked Date: ${DateFormat.yMMMMd().format(_selectedDate)}',
+              SizedBox(
+                height: 70,
+                child: Row(
+                  children: <Widget>[
+                    Expanded(
+                      child: Text(
+                        _selectedDate == null
+                            ? 'No Date Chosen!'
+                            : 'Picked Date: ${DateFormat.yMMMMd().format(_selectedDate)}',
+                      ),
                     ),
-                  ),
-                  FlatButton(
-                    textColor: Theme.of(context).primaryColor,
-                    child: const Text("Choose Date",
-                        style: TextStyle(fontWeight: FontWeight.bold)),
-                    onPressed: _presentDatePicker,
-                  ),
-                ],
+                    FlatButton(
+                      textColor: Theme.of(context).primaryColor,
+                      child: const Text("Choose Date",
+                          style: TextStyle(fontWeight: FontWeight.bold)),
+                      onPressed: _presentDatePicker,
+                    ),
+                  ],
+                ),
               ),
-            ),
-            RaisedButton(
-              child: const Text("Add Transaction"),
-              color: Theme.of(context).primaryColor,
-              textColor: Theme.of(context).textTheme.button?.color,
-              onPressed: _submitData,
-            )
-          ],
+              RaisedButton(
+                child: const Text("Add Transaction"),
+                color: Theme.of(context).primaryColor,
+                textColor: Theme.of(context).textTheme.button?.color,
+                onPressed: _submitData,
+              )
+            ],
+          ),
         ),
       ),
     );
