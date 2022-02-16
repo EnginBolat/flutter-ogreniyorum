@@ -70,7 +70,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 CustomButtonDesign(
                     butonBaslik: "Login",
                     komut: () {
-                      Navigator.push(
+                      Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
                               builder: (context) => const LoginPage()));
@@ -81,7 +81,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 CustomButtonDesign(
                   butonBaslik: "Signup",
                   komut: () {
-                    Navigator.push(
+                    Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
                             builder: (context) => const SignupPage()));

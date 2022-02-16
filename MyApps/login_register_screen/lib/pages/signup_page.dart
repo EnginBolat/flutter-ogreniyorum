@@ -11,7 +11,7 @@ class SignupPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(),
+      appBar: const CustomAppBarBackButton(),
       body: Center(
         child: SingleChildScrollView(
           child: Padding(
@@ -40,7 +40,7 @@ class SignupPage extends StatelessWidget {
                   CustomButtonDesign(
                     butonBaslik: "Login",
                     komut: () {
-                      Navigator.push(
+                      Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
                               builder: (context) => const LoginPage()));
