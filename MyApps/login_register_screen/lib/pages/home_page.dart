@@ -1,12 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import 'package:login_register_screen/widgets/favorite_contacts.dart';
+
 import '../widgets/appbar_design.dart';
+import '../widgets/clipper_design.dart';
+import '../widgets/newpost_design.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({Key? key, User}) : super(key: key);
 
   @override
   _HomePageState createState() => _HomePageState();
 }
+
+bool isLiked = false;
 
 class _HomePageState extends State<HomePage> {
   @override
@@ -15,94 +23,58 @@ class _HomePageState extends State<HomePage> {
       appBar: const CustomAppBarHomePage(),
       body: SingleChildScrollView(
         child: Column(
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(15.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SizedBox(
-                    height: 200,
-                    width: 350,
-                    child: Card(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(25.0),
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Stack(
+              clipBehavior: Clip.none,
+              children: <Widget>[
+                Positioned(
+                  child: ClipPath(
+                    clipper: MyCustomClipper(),
+                    child: Container(
+                      decoration: const BoxDecoration(
+                        image: DecorationImage(
+                          image: NetworkImage(
+                              'https://wallpaper.dog/large/966733.jpg'),
+                          fit: BoxFit.fill,
+                        ),
                       ),
-                      color: Colors.red,
-                      elevation: 16,
-                      child: Column(
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: const <Widget>[
-                              Padding(
-                                padding: EdgeInsets.only(right:32,top:25,bottom: 25,left: 32),
-                                child: Text.rich(
-                                  TextSpan(
-                                    style: TextStyle(
-                                        fontSize: 24,
-                                        color: Colors.white),
-                                    children: [
-                                      TextSpan(
-                                        text: 'Card',
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: const [
-                                 Text.rich(
-                                  TextSpan(
-                                    style: TextStyle(
-                                        fontSize: 32,
-                                        color: Colors.white,),
-                                    children: [
-                                      TextSpan(
-                                        text: '1234 **** **** 5678',
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                            ],
-                          ),
-
-                          Padding(
-                            padding: const EdgeInsets.only(right:32.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: const [
-                                Padding(
-                                  padding: EdgeInsets.only(top:24.0),
-                                  child: Text.rich(
-                                    TextSpan(
-                                      style: TextStyle(
-                                          fontSize: 16,
-                                          color: Colors.white,),
-                                      children: [
-                                        TextSpan(
-                                          text: '06/23',
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-
-                        ],
-                      ),
+                      width: double.infinity,
+                      height: 300.0,
                     ),
                   ),
-                ],
-              ),
+                ),
+                const Positioned(
+                  left: 12,
+                  top: 230,
+                  height: 120,
+                  width: 120,
+                  child: CircleAvatar(
+                    backgroundImage: AssetImage("assets/images/engin.jpg"),
+                  ),
+                ),
+              ],
             ),
+            const SizedBox(height: 50),
+            Row(
+              children: const <Widget>[
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 42, vertical: 10),
+                  child: Text(
+                    "ENGIN",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18,
+                      color: Colors.blueGrey,
+                      letterSpacing: 1.3,
+                    ),
+                    textAlign: TextAlign.left,
+                  ),
+                ),
+              ],
+            ),
+            const FavoriteContacts(),
+            const NewPost(),
           ],
         ),
       ),

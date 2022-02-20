@@ -6,7 +6,11 @@ import '../widgets/appbar_design.dart';
 import '../widgets/textfield_design.dart';
 
 class SignupPage extends StatelessWidget {
-  const SignupPage({Key? key}) : super(key: key);
+  SignupPage({Key? key}) : super(key: key);
+
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  final nameController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -25,15 +29,27 @@ class SignupPage extends StatelessWidget {
                       height: 200,
                       width: 300,
                       child: Image.asset("assets/images/todo.png")),
-                  CustomTextField(labelmesaj: "Username", komut: () {}),
+                  CustomTextField(
+                    labelmesaj: "Username",
+                    komut: () {},
+                    kontrol: nameController,
+                  ),
                   const SizedBox(
                     height: 20,
                   ),
-                  CustomTextField(labelmesaj: "Email", komut: () {}),
+                  CustomTextField(
+                    labelmesaj: "Email",
+                    komut: () {},
+                    kontrol: emailController,
+                  ),
                   const SizedBox(
                     height: 20,
                   ),
-                  CustomTextField(labelmesaj: "Password", komut: () {}),
+                  CustomTextField(
+                    labelmesaj: "Password",
+                    komut: () {},
+                    kontrol: passwordController,
+                  ),
                   const SizedBox(
                     height: 20,
                   ),
@@ -42,8 +58,8 @@ class SignupPage extends StatelessWidget {
                     komut: () {
                       Navigator.pushReplacement(
                           context,
-                          MaterialPageRoute(
-                              builder: (context) => const LoginPage()));
+                           MaterialPageRoute(
+                              builder: (context) => LoginPage()));
                     },
                   ),
                 ],

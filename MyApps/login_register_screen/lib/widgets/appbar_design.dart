@@ -18,6 +18,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       ),
       backgroundColor: Colors.red,
       centerTitle: true,
+      elevation: 0.0,
     );
   }
 }
@@ -38,7 +39,7 @@ class CustomAppBarHomePage extends StatelessWidget
         "ToDo",
         style: TextStyle(fontWeight: FontWeight.bold),
       ),
-      backgroundColor: Colors.red,
+      backgroundColor: Theme.of(context).primaryColor,
       centerTitle: true,
       actions: <Widget>[
         IconButton(
@@ -52,6 +53,7 @@ class CustomAppBarHomePage extends StatelessWidget
           },
         )
       ],
+      elevation: 0.0,
     );
   }
 }
@@ -84,6 +86,7 @@ class CustomAppBarBackButton extends StatelessWidget
       ),
       backgroundColor: Colors.red,
       centerTitle: true,
+      elevation: 0.0,
     );
   }
 }

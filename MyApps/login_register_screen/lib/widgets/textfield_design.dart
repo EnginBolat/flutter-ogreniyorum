@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 class CustomTextField extends StatelessWidget {
   final String labelmesaj;
   final Function komut;
+  final TextEditingController kontrol;
 
   // ignore: use_key_in_widget_constructors
-  const CustomTextField({required this.labelmesaj, required this.komut});
+  const CustomTextField({required this.labelmesaj,required this.kontrol,required this.komut});
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +23,8 @@ class CustomTextField extends StatelessWidget {
           borderRadius: BorderRadius.circular(20.0),
         ),
       ),
+      controller: kontrol,
+      onSubmitted: (_)=>{},
     );
   }
 }

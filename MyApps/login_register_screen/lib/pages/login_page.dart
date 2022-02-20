@@ -6,7 +6,10 @@ import '../widgets/appBar_design.dart';
 import '../widgets/button_design.dart';
 
 class LoginPage extends StatelessWidget {
-  const LoginPage({Key? key}) : super(key: key);
+  LoginPage({Key? key}) : super(key: key);
+
+  final emailController = TextEditingController();
+  final passworController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -25,11 +28,17 @@ class LoginPage extends StatelessWidget {
                   width: 300,
                   child: Image.asset("assets/images/todo.png"),
                 ),
-                CustomTextField(labelmesaj: "Email", komut: () {}),
+                CustomTextField(
+                    labelmesaj: "Email",
+                    komut: () {},
+                    kontrol: emailController),
                 const SizedBox(
                   height: 20,
                 ),
-                CustomTextField(labelmesaj: "Password", komut: () {}),
+                CustomTextField(
+                    labelmesaj: "Password",
+                    komut: () {},
+                    kontrol: passworController),
                 const SizedBox(
                   height: 20,
                 ),

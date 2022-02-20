@@ -21,7 +21,7 @@ class CustomButtonDesign extends StatelessWidget {
           komut();
         },
         style: ElevatedButton.styleFrom(
-          primary: Colors.red,
+          primary: Theme.of(context).primaryColor,
           onPrimary: Colors.white,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(32.0),

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../widgets/button_design.dart';
-import '../widgets/appBar_Design.dart';
-
+import '../widgets/appBar_design.dart';
 import 'pages/login_page.dart';
 import 'pages/signup_page.dart';
 
@@ -32,6 +31,8 @@ class MyApp extends StatelessWidget {
                 color: Colors.white,
               ),
             ),
+        primaryColor: Colors.red, 
+        accentColor: Colors.grey,
       ),
       home: const MyHomePage(),
     );
@@ -73,7 +74,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const LoginPage()));
+                              builder: (context) => LoginPage()));
                     }),
                 const SizedBox(
                   height: 20,
@@ -84,7 +85,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const SignupPage()));
+                            builder: (context) => SignupPage()));
                   },
                 ),
               ],
