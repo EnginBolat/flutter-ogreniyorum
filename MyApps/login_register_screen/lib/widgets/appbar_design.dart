@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:login_register_screen/widgets/button_design.dart';
 import '../main.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -48,8 +49,57 @@ class CustomAppBarHomePage extends StatelessWidget
             color: Colors.white,
           ),
           onPressed: () {
-            Navigator.pushReplacement(context,
-                MaterialPageRoute(builder: (context) => const MyApp()));
+            showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return AlertDialog(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12.0),
+                  ),
+                  title: const Text("Logout?"),
+                  backgroundColor: Theme.of(context).primaryColor,
+                  content: const Text(
+                    "Are You Sure?",
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
+                  actions: [
+                    ElevatedButton(
+                      child: const Text(
+                        "Okay",
+                        style: TextStyle(
+                          color: Colors.black,
+                        ),
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        primary: Colors.white,
+                      ),
+                      onPressed: () {
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const MyApp()));
+                      },
+                    ),
+                    ElevatedButton(
+                      child: const Text(
+                        "Cancel",
+                        style: TextStyle(
+                          color: Colors.black,
+                        ),
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        primary: Colors.white,
+                      ),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                    ),
+                  ],
+                );
+              },
+            );
           },
         )
       ],
