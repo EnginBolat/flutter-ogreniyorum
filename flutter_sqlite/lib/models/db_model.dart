@@ -76,15 +76,16 @@ class DatabaseConnect {
     );
 
     return List.generate(
-        items.length,
-        (i) => Todo(
-              id: items[i]['id'],
-              title: items[i]['title'],
-              creationDate: DateTime.parse(items[i][
-                  'creationDate']), //Şuanda text formatında bunu dateTime formatına çevirelim
-              isChecked: items[i]['isChecked'] == 1
-                  ? true
-                  : false, //Integer değerden boolean değere çevirdik
-            ));
+      items.length,
+      (i) => Todo(
+        id: items[i]['id'],
+        title: items[i]['title'],
+        creationDate: DateTime.parse(items[i][
+            'creationDate']), //Şuanda text formatında bunu dateTime formatına çevirelim
+        isChecked: items[i]['isChecked'] == 1
+            ? true
+            : false, //Integer değerden boolean değere çevirdik
+      ),
+    );
   }
 }
