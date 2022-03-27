@@ -32,9 +32,13 @@ class _NotEkleState extends State<NotEkle> {
   @override
   void initState() {
     super.initState();
-    WidgetsFlutterBinding.ensureInitialized();
-    Firebase.initializeApp();
+    firebaseRun();
   }
+
+  void firebaseRun() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+}
 
   @override
   Widget build(BuildContext context) {

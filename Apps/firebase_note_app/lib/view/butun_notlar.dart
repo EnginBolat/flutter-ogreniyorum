@@ -15,9 +15,13 @@ class _AllNotesPageState extends State<AllNotesPage> {
   @override
   void initState() {
     super.initState();
-    WidgetsFlutterBinding.ensureInitialized();
-    Firebase.initializeApp();
+    firebaseRun();
     const NotlariListele();
+  }
+
+  void firebaseRun() async{
+    WidgetsFlutterBinding.ensureInitialized();
+    await Firebase.initializeApp();
   }
 
   @override

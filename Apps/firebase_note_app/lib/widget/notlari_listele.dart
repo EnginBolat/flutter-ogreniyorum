@@ -20,8 +20,12 @@ class _NotlariListeleState extends State<NotlariListele> {
   @override
   void initState() {
     super.initState();
+    firebaseRun();
+  }
+
+  void firebaseRun() async {
     WidgetsFlutterBinding.ensureInitialized();
-    Firebase.initializeApp();
+    await Firebase.initializeApp();
   }
 
   @override
@@ -43,6 +47,7 @@ class _NotlariListeleState extends State<NotlariListele> {
             itemCount: notlarListesi.length,
             itemBuilder: (context, index) {
               var not = notlarListesi[index];
+
               return Center(
                 child: SizedBox(
                   height: 100,

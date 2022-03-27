@@ -42,9 +42,13 @@ class _NotDuzenleState extends State<NotDuzenle> {
   @override
   void initState() {
     super.initState();
-    WidgetsFlutterBinding.ensureInitialized();
-    Firebase.initializeApp();
+    firebaseRun();
   }
+
+  void firebaseRun() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+}
 
   var not1Controller = TextEditingController();
   var not2Controller = TextEditingController();

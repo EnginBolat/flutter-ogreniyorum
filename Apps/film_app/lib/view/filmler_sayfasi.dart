@@ -1,4 +1,3 @@
-import 'package:film_app/main.dart';
 import 'package:film_app/models/film_model.dart.dart';
 import 'package:film_app/models/filmcevap_model.dart';
 import 'package:film_app/models/kategori_model.dart';
@@ -38,17 +37,6 @@ class _FilmlerSayfasiState extends State<FilmlerSayfasi> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        // leading: IconButton(
-        //   onPressed: () {
-        //     Navigator.push(
-        //       context,
-        //       MaterialPageRoute(
-        //         builder: (context) => const MyApp(),
-        //       ),
-        //     );
-        //   },
-        //   icon: const Icon(Icons.arrow_back_rounded),
-        // ),
         title: Text(widget.kategori.kategori_ad.toUpperCase()),
         centerTitle: true,
       ),
@@ -75,7 +63,7 @@ class _FilmlerSayfasiState extends State<FilmlerSayfasi> {
                       );
                     },
                     child: SizedBox(
-                      height: MediaQuery.of(context).size.height / 2,
+                      height: MediaQuery.of(context).size.height / 1.5,
                       width: MediaQuery.of(context).size.width / 1.6,
                       child: Card(
                         child: Column(
