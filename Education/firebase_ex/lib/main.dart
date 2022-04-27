@@ -19,7 +19,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  var refKisiler = FirebaseDatabase.instance.ref().child("kisiler_tablo");
+  var refKisiler = FirebaseDatabase.instance.ref().child("kisiler");
 
   Future<void> kisiEkle() async {
     var bilgi = HashMap<String, dynamic>();
@@ -59,7 +59,7 @@ class _MyAppState extends State<MyApp> {
           // ignore: avoid_print
           print("Kişi Ad: ${gelenKisi.kisi_ad}");
           // ignore: avoid_print
-          print("Kişi Yaş: ${gelenKisi.kisi_yas}");
+          print("Kişi Yaş: ${gelenKisi.kisi_id}");
         });
       }
     });
@@ -79,7 +79,7 @@ class _MyAppState extends State<MyApp> {
           // ignore: avoid_print
           print("Kişi Ad: ${gelenKisi.kisi_ad}");
           // ignore: avoid_print
-          print("Kişi Yaş: ${gelenKisi.kisi_yas}");
+          print("Kişi Yaş: ${gelenKisi.kisi_id}");
         });
       }
     });
@@ -101,7 +101,7 @@ class _MyAppState extends State<MyApp> {
           // ignore: avoid_print
           print("Kişi Ad: ${gelenKisi.kisi_ad}");
           // ignore: avoid_print
-          print("Kişi Yaş: ${gelenKisi.kisi_yas}");
+          print("Kişi Yaş: ${gelenKisi.kisi_id}");
         });
       }
     });
@@ -125,7 +125,7 @@ class _MyAppState extends State<MyApp> {
           // ignore: avoid_print
           print("Kişi Ad: ${gelenKisi.kisi_ad}");
           // ignore: avoid_print
-          print("Kişi Yaş: ${gelenKisi.kisi_yas}");
+          print("Kişi Yaş: ${gelenKisi.kisi_id}");
         });
       }
     });
@@ -149,7 +149,7 @@ class _MyAppState extends State<MyApp> {
           // ignore: avoid_print
           print("Kişi Ad: ${gelenKisi.kisi_ad}");
           // ignore: avoid_print
-          print("Kişi Yaş: ${gelenKisi.kisi_yas}");
+          print("Kişi Yaş: ${gelenKisi.kisi_id}");
         });
       }
     });
@@ -162,11 +162,11 @@ class _MyAppState extends State<MyApp> {
     // kisiEkle();
     // kisiSil();
     // kisiGuncelle();
-    // tumKisiler();
+    tumKisiler();
     // tumKisilerManuel();
     // tumKisilerIsimSorgu();
     // ilkIkiVeri();
-    degerAraligi();
+    // degerAraligi();
   }
 
   var adController = TextEditingController();
@@ -198,7 +198,8 @@ class _MyAppState extends State<MyApp> {
                 const SizedBox(height: 10),
                 ElevatedButton(
                   onPressed: () {
-                    tumKisilerIsimSorgu();
+                    // tumKisilerIsimSorgu();
+                    tumKisiler();
                   },
                   child: Text(labelMesaj),
                 )

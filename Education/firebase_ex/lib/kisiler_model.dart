@@ -1,10 +1,11 @@
 class Kisiler {
   String kisi_ad;
-  int kisi_yas;
+  String kisi_id;
+  String kisi_tel;
 
-  Kisiler(this.kisi_ad, this.kisi_yas);
+  Kisiler(this.kisi_ad, this.kisi_id,this.kisi_tel);
 
   factory Kisiler.fromJson(Map<dynamic, dynamic> json) {
-    return Kisiler(json['kisi_ad'] as String, json["kisi_yas"] as int);
+    return Kisiler(json['kisi_ad'] as String, json["kisi_id"] as String,json["kisi_tel"] as String);
   }
 }
