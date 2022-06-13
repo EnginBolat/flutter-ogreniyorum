@@ -31,24 +31,25 @@ class _NotesPageState extends State<NotesPage> {
 
   Future refreshNotes() async {
     isLoading = true;
-    this.notes = await NotesDatabase.instance.readAllNotes();
+    notes = await NotesDatabase.instance.readAllNotes();
     setState(() => isLoading = false);
   }
 
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
-          title: Text(
+          title: const Text(
             'Notes',
             style: TextStyle(fontSize: 24),
           ),
-          actions: [Icon(Icons.search), SizedBox(width: 12)],
+          // ignore: prefer_const_literals_to_create_immutables
+          actions: [const Icon(Icons.search), const SizedBox(width: 12)],
         ),
         body: Center(
           child: isLoading
-              ? CircularProgressIndicator()
+              ? const CircularProgressIndicator()
               : notes.isEmpty
-                  ? Text(
+                  ? const Text(
                       'No Notes',
                       style: TextStyle(color: Colors.white, fontSize: 24),
                     )
@@ -56,10 +57,10 @@ class _NotesPageState extends State<NotesPage> {
         ),
         floatingActionButton: FloatingActionButton(
           backgroundColor: Colors.black,
-          child: Icon(Icons.add),
+          child: const Icon(Icons.add),
           onPressed: () async {
             await Navigator.of(context).push(
-              MaterialPageRoute(builder: (context) => AddEditNotePage()),
+              MaterialPageRoute(builder: (context) => const AddEditNotePage()),
             );
 
             refreshNotes();
@@ -68,9 +69,9 @@ class _NotesPageState extends State<NotesPage> {
       );
 
   Widget buildNotes() => StaggeredGridView.countBuilder(
-        padding: EdgeInsets.all(8),
+        padding: const EdgeInsets.all(8),
         itemCount: notes.length,
-        staggeredTileBuilder: (index) => StaggeredTile.fit(2),
+        staggeredTileBuilder: (index) => const StaggeredTile.fit(2),
         crossAxisCount: 4,
         mainAxisSpacing: 4,
         crossAxisSpacing: 4,

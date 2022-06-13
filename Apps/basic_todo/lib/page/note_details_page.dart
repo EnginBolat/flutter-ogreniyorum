@@ -4,6 +4,7 @@ import 'package:basic_todo/page/note_edit_page.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+// ignore: must_be_immutable
 class NoteDetailsPage extends StatefulWidget {
   NoteDetailsPage({Key? key, required this.noteId}) : super(key: key);
   int noteId;
@@ -34,29 +35,29 @@ class _NoteDetailsPageState extends State<NoteDetailsPage> {
           actions: [editButton(), deleteButton()],
         ),
         body: isLoading
-            ? Center(child: CircularProgressIndicator())
+            ? const Center(child: CircularProgressIndicator())
             : Padding(
-                padding: EdgeInsets.all(12),
+                padding: const EdgeInsets.all(12),
                 child: ListView(
-                  padding: EdgeInsets.symmetric(vertical: 8),
+                  padding: const EdgeInsets.symmetric(vertical: 8),
                   children: [
                     Text(
                       note.title,
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Colors.white,
                         fontSize: 22,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    SizedBox(height: 8),
+                    const SizedBox(height: 8),
                     Text(
                       DateFormat.yMMMd().format(note.createdTime),
-                      style: TextStyle(color: Colors.white38),
+                      style: const TextStyle(color: Colors.white38),
                     ),
-                    SizedBox(height: 8),
+                    const SizedBox(height: 8),
                     Text(
                       note.description,
-                      style: TextStyle(color: Colors.white70, fontSize: 18),
+                      style: const TextStyle(color: Colors.white70, fontSize: 18),
                     )
                   ],
                 ),
@@ -64,7 +65,7 @@ class _NoteDetailsPageState extends State<NoteDetailsPage> {
       );
 
   Widget editButton() => IconButton(
-      icon: Icon(Icons.edit_outlined),
+      icon: const  Icon(Icons.edit_outlined),
       onPressed: () async {
         if (isLoading) return;
 

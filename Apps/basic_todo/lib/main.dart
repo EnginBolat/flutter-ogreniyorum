@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
       themeMode: ThemeMode.dark,
       darkTheme: ThemeData.dark(),
       title: 'Basic Note App',
-      home: NotesPage(),
+      home: const NotesPage(),
     );
   }
 }
