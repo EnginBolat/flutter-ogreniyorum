@@ -1,0 +1,24 @@
+{
+    "LobbyPageText": {
+        "login": "Login",
+        "signup": "Sign Up",
+        "or": "Or"
+    },
+    "LoginPageText": {
+        "email": "Email",
+        "password": "Password",
+        "login": "Login"
+    },
+    "SignInPage": {
+        "name": "Name",
+        "surname": "Surname",
+        "phone": "Phone",
+        "email": "Email",
+        "password": "Password",
+        "signup": "Sign Up"
+    },
+    "SettingsPage": {
+        "settings" : "Settings",
+        "languageSettings" : "Language Settings"
+    }
+}

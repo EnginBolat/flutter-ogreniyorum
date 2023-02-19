@@ -1,0 +1,24 @@
+{
+    "LobbyPageText": {
+        "login": "Giriş Yap",
+        "signup": "Kayıt Ol",
+        "or": "Ya da"
+    },
+    "LoginPageText": {
+        "email": "E-posta",
+        "password": "Şifreniz",
+        "login": "Giriş Yap"
+    },
+    "SignInPage": {
+        "name": "Adınız",
+        "surname": "Soyadınız",
+        "phone": "Telefon",
+        "email": "E-posta",
+        "password": "Şifreniz",
+        "signup": "Kayıt Ol"
+    },
+    "SettingsPage": {
+        "settings" : "Ayarlar",
+        "languageSettings" : "Dil Ayarları"
+    }
+}
